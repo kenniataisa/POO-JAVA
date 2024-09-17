@@ -3,13 +3,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public abstract class Colecionador <T extends Veiculo> {
+public class Colecionador <T extends Veiculo, U> {
     private String nome;
     List<T> garagem;
+    List<U> condecoracoes;
 
     public Colecionador(String nome) {
         this.nome = nome;
         this.garagem = new ArrayList<>();
+        this.condecoracoes = new ArrayList<>();
     }
 
     public String getNome() {
@@ -19,6 +21,10 @@ public abstract class Colecionador <T extends Veiculo> {
     public List<T> getGaragem() {
         return garagem;
     }
+
+    public List<U> getCondecoracoes() {
+        return condecoracoes;
+    }   
 
     public void adicionarVeiculo(T veiculo) throws VeiculoJaExisteException { 
         if(garagem.contains(veiculo)) {
@@ -53,5 +59,14 @@ public abstract class Colecionador <T extends Veiculo> {
             veiculo.exibirDetalhes();
         }
     }
+
+    public void adicionarCondecoracao(U condecoracao) {
+        condecoracoes.add(condecoracao);
+    }
+
+    @Override
+    public String toString() {  
+        return "Colecionador [nome=" + nome + ", garagem=" + garagem + ", condecoracoes=" + condecoracoes + "]";            
 }
 
+}
